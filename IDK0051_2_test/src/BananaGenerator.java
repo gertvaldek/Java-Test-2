@@ -66,21 +66,67 @@ public class BananaGenerator {
 	            public void run() {
 	                Banana p = null;
 	                while((p = giveMeBanana())!= null){
-
+	                	if (p.getAngle() <= 30 && p.getAngle() >= 15 ) {
+	                	System.out.println(p.getAngle());
+	                	System.out.println(p.getSort());
+	                	
+	                    System.out.println("Thread ID - " + Thread.currentThread().getName());
 	                    System.out.println("---------------------------");
+	                	} 
 	                }
 	            }
 	        };
 	        
-	         Thread t = new Thread(bananaRunnable1);
-	            t.start();
+	        // Removes bananas with angle less than 15 or bigger than 30
+	        Runnable bananaRunnable2 = new Runnable(){
+	            @Override
+	            public void run() {
+	                Banana p = null;
+	                while((p = giveMeBanana())!= null){
+	                	if (p.getAngle() > 30 || p.getAngle() < 15) {
+	                	System.out.println(p.getAngle());
+	                	System.out.println(p.getSort());
+	                	
+	                    System.out.println("Thread ID - " + Thread.currentThread().getName());
+	                    System.out.println("---------------------------");
+	                	} 
+	                }
+	            }
+	        };
+	        
+	        // Remove bananas if readyLevel is bigger or equal than 6 
+	        Runnable bananaRunnable3 = new Runnable(){
+	            @Override
+	            public void run() {
+	                Banana p = null;
+	                while((p = giveMeBanana())!= null){
+	                	if (p.getAngle() > 30) {
+	                	System.out.println(p.getAngle());
+	                	System.out.println(p.getSort());
+	                	
+	                    System.out.println("Thread ID - " + Thread.currentThread().getName());
+	                    System.out.println("---------------------------");
+	                	} 
+	                }
+	            }
+	        };
+	        
+	         Thread t1 = new Thread(bananaRunnable1);
+	         Thread t2 = new Thread(bananaRunnable2);
+	         Thread t3 = new Thread(bananaRunnable3);
+	         
+	            t1.start();
+	            t2.start();
+	            t3.start();
 	            try {
 	                Thread.sleep(15);
 	            } catch (InterruptedException e) {
 	                // TODO Auto-generated catch block
 	                e.printStackTrace();
 	            }
-	    		t.interrupt();
+	    		t1.interrupt();
+	    		t2.interrupt();
+	    		t3.interrupt();
 	        
 
 }
