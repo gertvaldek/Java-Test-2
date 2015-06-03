@@ -4,8 +4,17 @@ public class Banana {
 	private double weight;
 	private int readyLevel;  // How ready is this banana from 1 ... 10
 	private String sort;
-	private int angle;  // Angle of the banan from 0 .. 45
+	private int angle = 0;  // Angle of the banan from 0 .. 45
 	private int expireDate;
+	
+	public void setExpireDate(int expireDate) {
+	}
+	
+	// Calculating remaining days till product expired
+	public int getExpireDate() {
+		expireDate = 10 - readyLevel;
+		return expireDate;
+	}
 	
 	public double getWeight() {
 		return weight;
@@ -30,9 +39,6 @@ public class Banana {
 	}
 	public void setAngle(int angle) {
 		this.angle = angle;
-	}
-	public void setExpireDate(int expireDate) {
-		
 	}
 	
 

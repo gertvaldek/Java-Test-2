@@ -60,52 +60,72 @@ public class BananaGenerator {
 	            bananas.add(p);
 
 	        }
-	        
+	        // Prints bananas with angle between 15 .. 30
 	        Runnable bananaRunnable1 = new Runnable(){
 	            @Override
 	            public void run() {
-	                Banana p = null;
-	                while((p = giveMeBanana())!= null){
+	                for (int i  = 0; i < bananas.size(); i++){
+						Banana p = bananas.get(i);
+
 	                	if (p.getAngle() <= 30 && p.getAngle() >= 15 ) {
-	                	System.out.println(p.getAngle());
-	                	System.out.println(p.getSort());
-	                	
-	                    System.out.println("Thread ID - " + Thread.currentThread().getName());
-	                    System.out.println("---------------------------");
+		                System.out.println("Angle of banana " + p.getAngle());
+		                System.out.println("Sort: " + p.getSort());
+	                	System.out.println("Expire date days left: " + p.getExpireDate());	                	
+	                    System.out.println("------------------------------ " 
+	                    + Thread.currentThread().getName());
+	                    try {
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 	                	} 
 	                }
 	            }
 	        };
 	        
-	        // Removes bananas with angle less than 15 or bigger than 30
+	        // Prints bananas with angle less than 15 or bigger than 30
 	        Runnable bananaRunnable2 = new Runnable(){
 	            @Override
 	            public void run() {
-	                Banana p = null;
-	                while((p = giveMeBanana())!= null){
+	                for (int i  = 0; i < bananas.size(); i++){
+						Banana p = bananas.get(i);
 	                	if (p.getAngle() > 30 || p.getAngle() < 15) {
-	                	System.out.println(p.getAngle());
-	                	System.out.println(p.getSort());
-	                	
-	                    System.out.println("Thread ID - " + Thread.currentThread().getName());
-	                    System.out.println("---------------------------");
+	                	System.out.println("Angle of banana " + p.getAngle());
+	                	System.out.println("Sort: " + p.getSort());
+	                	System.out.println("Expire date days left: " + p.getExpireDate());                	
+	                    System.out.println("------------------------------ " 
+	                    + Thread.currentThread().getName());
+	                    try {
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 	                	} 
 	                }
 	            }
 	        };
 	        
-	        // Remove bananas if readyLevel is bigger or equal than 6 
+	        // Prints bananas if readyLevel is bigger or equal than 6 
 	        Runnable bananaRunnable3 = new Runnable(){
 	            @Override
 	            public void run() {
-	                Banana p = null;
-	                while((p = giveMeBanana())!= null){
-	                	if (p.getAngle() > 30) {
-	                	System.out.println(p.getAngle());
-	                	System.out.println(p.getSort());
-	                	
-	                    System.out.println("Thread ID - " + Thread.currentThread().getName());
-	                    System.out.println("---------------------------");
+	                for (int i  = 0; i < bananas.size(); i++){
+						Banana p = bananas.get(i);
+	                	if (p.getReadyLevel() >= 6) {
+		                System.out.println("Angle of banana " + p.getAngle());
+		                System.out.println("Sort: " + p.getSort());
+		                System.out.println("Ready level: " + p.getReadyLevel());		                
+	                	System.out.println("Expire date days left: " + p.getExpireDate());                	
+	                    System.out.println("------------------------------ " 
+	                    + Thread.currentThread().getName());
+	                    try {
+							Thread.sleep(10);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 	                	} 
 	                }
 	            }
@@ -119,11 +139,12 @@ public class BananaGenerator {
 	            t2.start();
 	            t3.start();
 	            try {
-	                Thread.sleep(15);
+	                Thread.sleep(4500);
 	            } catch (InterruptedException e) {
 	                // TODO Auto-generated catch block
 	                e.printStackTrace();
 	            }
+	            System.out.println("--- Finished ---");
 	    		t1.interrupt();
 	    		t2.interrupt();
 	    		t3.interrupt();
